@@ -1,0 +1,2 @@
+class NonTeaching < Staff
+end

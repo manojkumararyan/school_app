@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Staffs</h1>
+<ul>
+  <li><%= "Total Staff count #{@staffs.size}" %></li>
+  <% t_count = @staffs.select{|x| x.type=='Teacher'}.size
+    t_fraction = (@staffs.size > 0) ? ((t_count.to_f/@staffs.size) * 100).round(2) : 0
+  %>
+  <li><%= "Total Teacher count #{t_count} (#{t_fraction}% of staff)" %></li>
+</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Subjects count</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= staff.name %></td>
+        <td><%= staff.type %></td>
+        <td><%= staff.subjects.size if staff.type == 'Teacher' %></td>
+        <td><%= link_to 'Show', staff %></td>
+        <td><%= link_to 'Edit', edit_staff_path(staff) %></td>
+        <td><%= link_to 'Destroy', staff, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Staff', new_staff_path %>

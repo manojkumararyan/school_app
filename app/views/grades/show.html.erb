@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @grade.name %>
+</p>
+<% if @grade.subjects.present? %>
+  <strong>Subjects:</strong>
+  <ul>
+    <% @grade.subjects.each do |subject| %>
+      <li><%= subject.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Edit', edit_grade_path(@grade) %> |
+<%= link_to 'Back', grades_path %>
